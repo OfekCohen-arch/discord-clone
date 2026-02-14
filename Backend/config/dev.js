@@ -1,6 +1,6 @@
 export default {
   dbURL: process.env.DB_URL,
-  dbName: process.env.DB_NAME || "devcord",
+  dbName: process.env.DB_NAME || "Devcord",
   corsOrigins: (
     process.env.CORS_ORIGINS || "http://localhost:5173,http://127.0.0.1:5173"
   )

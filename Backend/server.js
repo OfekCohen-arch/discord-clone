@@ -8,6 +8,8 @@ import cookieParser from 'cookie-parser'
 //import {loggerMiddleware} from './middlewares'
 import {loggerService} from './services/logger.service.js'
 import {dbService} from './services/db.service.js'
+import { userRoutes } from './api/user/user.routes.js'
+import {authRoutes} from './api/auth/auth.routes.js'
 
 const app = express()
 const httpServer = http.createServer(app)
@@ -27,6 +29,10 @@ app.use(
   })
 );
 
+app.use('/api/user',userRoutes)
+app.use('/api/auth',authRoutes)
+
+
 app.use((req, res) => {
   res.status(404).send({ error: "Not found" });
 });
@@ -43,7 +49,7 @@ const port = process.env.PORT || 3030;
     // Fail fast if DB creds are wrong
     
     
-    await dbService.getCollection("devcord");
+    await dbService.getCollection("Devcord");
 
     httpServer.listen(port, () => {
       loggerService.info(`Server running on port ${port}`);
