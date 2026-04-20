@@ -1,12 +1,35 @@
 import { useState } from "react";
-import { utilService } from "../services/util.service"
+import { utilService } from "../services/util.service.js"
+import { signup } from "../store/actions/user.actions.js";
 
 export function Register() {
-    const [user, setUser] = useState({})
-    function onSignUp(ev) {
+    const [user, setUser] = useState({
+        month: 1,
+        year: 2023,
+        day: 1
+    })
+    const [error, setError] = useState('')
+    async function onSignUp(ev) {
         ev.preventDefault()
-        console.log(user);
+        setError('')
+        try {
+            await signup(user)
+        } catch (err) {
+            const serverError = err.response?.data?.err
 
+            if (serverError === 'Email already in use') {
+                setError('The email is already registered')
+            } else {
+                setError('Something went wrong, please try again')
+            }
+        }
+
+    }
+    function handleChange({ target }) {
+        const { name: field, value } = target
+        setUser(prevState => {
+            return { ...prevState, [field]: value }
+        })
     }
     return (
         <section className="register-page">
@@ -17,19 +40,19 @@ export function Register() {
                         <div className="label-container">
                             <label htmlFor="email">Email <span className="required">*</span></label>
                         </div>
-                        <input name="email" type="email" required />
+                        <input name="email" type="email" required onChange={handleChange} />
                     </div>
                     <div className="field-container">
                         <div className="label-container">
                             <label htmlFor="username">Username <span className="required">*</span></label>
                         </div>
-                        <input name="username" type="text" required />
+                        <input name="username" type="text" required onChange={handleChange} />
                     </div>
                     <div className="field-container">
                         <div className="label-container">
                             <label htmlFor="password">Password <span className="required">*</span></label>
                         </div>
-                        <input name="password" required type="password" />
+                        <input name="password" required type="password" onChange={handleChange} />
                     </div>
                     <div className="field-container">
                         <div className="label-container">
@@ -37,7 +60,7 @@ export function Register() {
                         </div>
                         <div className="dates-container">
                             <div className="select-wrapper">
-                                <select>
+                                <select name="month" onChange={handleChange}>
                                     {utilService.getMonths().map((month, idx) =>
                                         <option key={idx + 1} value={idx + 1}>{month}</option>
                                     )}
@@ -45,7 +68,7 @@ export function Register() {
                                 <ArrowDown />
                             </div>
                             <div className="select-wrapper">
-                                <select>
+                                <select name="day" onChange={handleChange}>
                                     {Array.from({ length: 31 }, (_, i) => (
                                         <option key={i + 1} value={i + 1}>
                                             {i + 1}
@@ -55,7 +78,7 @@ export function Register() {
                                 <ArrowDown />
                             </div>
                             <div className="select-wrapper">
-                                <select>
+                                <select name="year" onChange={handleChange}>
                                     {Array.from({ length: 2023 - 1900 + 1 }, (_, i) => {
                                         const year = 2023 - i;
                                         return (
@@ -71,6 +94,9 @@ export function Register() {
                         </div>
 
 
+                    </div>
+                    <div className="error-container">
+                        {error && <p className="error-msg">{error}</p>}
                     </div>
                     <button className="register-btn">Create Account</button>
                 </form>

@@ -103,3 +103,16 @@
     border-radius: 8px;
     border: none;
 }
+.error-container {
+    min-height: 25px; /* הגובה של שורת הטקסט */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* ממרכז את הטקסט מעל הכפתור */
+    margin-top: 10px;
+}
+
+.error-msg {
+    color: #ff4d4d;
+    font-size: 0.8rem;
+    margin: 0;
+}
