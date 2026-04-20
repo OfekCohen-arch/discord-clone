@@ -1,12 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import './assets/style/main.css'
+import { Register } from './pages/Register'
 
 function App() {
-  
+  return (
+    <Router>
+        <Routes>
+          <Route element={<Register/>} path='/' />
+        </Routes>
 
-  return <h1>Discord Clone</h1>
+    </Router>
+  )
 }
 
 export default App

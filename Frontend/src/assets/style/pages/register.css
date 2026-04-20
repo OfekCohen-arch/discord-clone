@@ -1,0 +1,105 @@
+.register-page {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register {
+  background-color: oklab(0.350185 0.00197871 -0.0120009);
+  width: 480px;
+  height: 760px;
+  margin: auto;
+  padding: 32px;
+  border-radius: 8px;
+}
+.register h1 {
+  text-align: center;
+  color: oklab(0.999994 0.0000455678 0.000020086);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.field-container {
+  display: grid;
+  row-gap: 4px;
+  margin-bottom: 20px;
+}
+.field-container input {
+  min-width: 30%;
+  height: 38px;
+  padding: 1px 12px;
+  background-color: #2d2d3a;
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  font-size: inherit;
+}
+.field-container input:focus {
+  outline: none;
+  border-color: #4d5dfb;
+}
+.label-container {
+  height: 20px;
+  font-size: 1rem;
+  color: oklab(0.999994 0.0000455678 0.0000200868);
+}
+.field-container .dates-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 12px;
+}
+.field-container .select-wrapper{
+    position: relative;
+    width: 100%;
+}
+.field-container select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #2d2d3a;
+  width: 100%;
+  color: white;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 8px 35px 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+.field-container select:focus {
+  border-color: #4d5dfb;
+}
+.field-container option {
+  background-color: #2d2d3a;
+  color: white;
+  font-size: 1rem;
+}
+.select-arrow {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: white;
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease;
+}
+.select-wrapper select:focus + .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+.register-btn{
+    width: 100%;
+    background-color: hsl(234.935 calc(1*85.556%) 64.706% /1);
+    padding: 7px 15px;
+    font-size: 1rem;
+    color: #FFFFFF;
+    min-height: 38px;
+    border-radius: 8px;
+    border: none;
+}
